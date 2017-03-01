@@ -28,7 +28,7 @@
 #' @section Dynamic debug messsages:
 #'
 #' It is often desired that the debug messages contain values of R
-#' epxressions evaluated at runtime. For example, when starting a Shiny
+#' expressions evaluated at runtime. For example, when starting a Shiny
 #' app, it is useful to also print out the path to the app. Similarly,
 #' when debugging an HTTP response, it is desired to log the HTTP status
 #' code.
@@ -68,7 +68,7 @@ debugme <- function(env = topenv(parent.frame()),
   objects <- ls(env, all.names = TRUE)
   funcs <- Filter(function(x) is.function(get(x, envir = env)), objects)
   Map(
-    function(x) assign(x, instrument(get(x, envir = env)), envir = env),
+    function(x) assign(x, instrument(get(x, envir = env), pkg), envir = env),
     funcs
   )
 }
