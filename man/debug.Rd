@@ -19,4 +19,3 @@ The original message.
 Normally this function is \emph{not} called directly, but debug strings
 are used. See \code{\link[=debugme]{debugme()}}.
 }
-

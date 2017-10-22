@@ -17,4 +17,3 @@ string has dynamic code.
 Substrings within backticks will be interpreted as code.
 }
 \keyword{internal}
-

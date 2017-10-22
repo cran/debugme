@@ -43,7 +43,7 @@ Example \code{debugme} entries:\preformatted{"!DEBUG Start Shiny app"
 
 
 It is often desired that the debug messages contain values of R
-epxressions evaluated at runtime. For example, when starting a Shiny
+expressions evaluated at runtime. For example, when starting a Shiny
 app, it is useful to also print out the path to the app. Similarly,
 when debugging an HTTP response, it is desired to log the HTTP status
 code.
@@ -58,11 +58,33 @@ Note that parsing the debug strings for code is not very sophisticated
 currently, and you cannot embed backticks into the code itself.
 }
 
+\section{Log levels}{
+
+To organize the log messages into log levels, you can start the
+\code{!DEBUG} token with multiple \code{!} characters. You can then select the
+desired level of logging via \code{!} characters before the package name
+in the \code{DEBUGME} environment variable. E.g. \code{DEBUGME=!!mypackage} means
+that only debug messages with two or less \code{!} marks will be printed.
+}
+
+\section{Debug stack}{
+
+By default \code{debugme} prints the \emph{debug stack} at the beginning of
+the debug messages. The debug stack contains the functions in the call
+stack that have (and emit) debug messages. To suppress printing the call
+stack set the \code{DEBUGME_SHOW_STACK} environment variable to \code{no}.
+}
+
 \section{Redirecting the output}{
 
 
 If the \code{DEBUGME_OUTPUT_FILE} environment variable is set to
 a filename, then the output is written there instead of the standard
 output stream of the R process.
+
+If \code{DEBUGME_OUTPUT_FILE} is not set, but \code{DEBUGME_OUTPUT_DIR} is, then
+a log file is created there, and the name of the file will contain
+the process id. This is is useful for logging from several parallel R
+processes.
 }
 
